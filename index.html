@@ -13,8 +13,8 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Huninn","Noto Sans TC",system-ui,sans-serif;line-height:1.7;font-size:16px}
-nav{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--bg);border-bottom:var(--b);padding:calc(8px + env(safe-area-inset-top,0px)) 10px 8px;display:flex;gap:6px;justify-content:center;overflow-x:auto}
-nav a{color:var(--ink);text-decoration:none;border:var(--b);border-radius:99px;padding:2px 14px;white-space:nowrap;font-size:15px;background:var(--bg)}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--bg);border-bottom:var(--b);padding:calc(8px + env(safe-area-inset-top,0px)) 10px 8px;display:flex;gap:6px;justify-content:flex-start;overflow-x:auto;overflow-y:hidden}
+nav a{flex-shrink:0;color:var(--ink);text-decoration:none;border:var(--b);border-radius:99px;padding:2px 14px;white-space:nowrap;font-size:15px;background:var(--bg)}
 nav a:nth-child(1){background:var(--pink)}nav a:nth-child(2){background:var(--yellow)}nav a:nth-child(3){background:var(--blue)}nav a:nth-child(4){background:var(--green)}nav a:nth-child(5){background:var(--pink)}nav a:nth-child(6){background:var(--blue)}nav a:nth-child(7){background:var(--yellow)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
 main{max-width:640px;margin:0 auto;padding:calc(64px + env(safe-area-inset-top,0px)) 16px 40px}
@@ -56,15 +56,6 @@ h2{font-size:22px;margin:0 0 12px;display:inline-block;background:var(--yellow);
 @keyframes pop{0%{transform:scale(.8) translateY(14px);opacity:0}100%{transform:none;opacity:1}}
 .tab.bounce{animation:tb .45s cubic-bezier(.3,1.8,.5,1)}
 @keyframes tb{0%{transform:scale(.85)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
-.todo{list-style:none;margin:0;padding:0}
-.todo li{margin:0 0 8px}
-.todo label{display:flex;gap:10px;align-items:flex-start;border:var(--b);border-radius:16px;padding:6px 12px;cursor:pointer;background:var(--bg)}
-.todo input{appearance:none;-webkit-appearance:none;flex:0 0 24px;width:24px;height:24px;margin:3px 0 0;border:var(--b);border-radius:8px;background:var(--bg);display:grid;place-items:center;cursor:pointer}
-.todo input:checked{background:var(--green)}
-.todo input:checked::after{content:"";width:6px;height:12px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.todo input:checked+span{text-decoration:line-through;opacity:.55}
-.prog{height:16px;border:var(--b);border-radius:99px;margin-bottom:12px;overflow:hidden;background:var(--bg)}
-.prog i{display:block;height:100%;width:0;background:var(--green);border-right:var(--b);transition:width .4s cubic-bezier(.3,1.5,.5,1)}
 .stay{margin-bottom:12px}.stay h3{margin:0;font-size:18px}.stay p{margin:2px 0;font-size:14px}
 .stay:nth-child(1){background:#FDE6E1}.stay:nth-child(2){background:#FDF2D2}.stay:nth-child(3){background:#DDEEF6}.stay:nth-child(4){background:#E4F1DB}
 .car{background:#FDF2D2}
@@ -74,7 +65,7 @@ h2{font-size:22px;margin:0 0 12px;display:inline-block;background:var(--yellow);
 .wx{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.wx .card{padding:10px 12px;text-align:center}
 .wx h4{margin:0;font-size:16px}.wx b{display:block;font-size:20px;font-weight:400;line-height:1.4}.wx small{font-size:13px}
 .wx .card:nth-child(1){background:#FDE6E1}.wx .card:nth-child(2){background:#E4F1DB}.wx .card:nth-child(3){background:#FDF2D2}.wx .card:nth-child(4){background:#DDEEF6}
-.note{font-size:14px;margin:10px 0 0}
+.note{font-size:14px;margin:10px 0 0}.wx{background:#EEF2F8;border:2px dashed #1F3A5F;border-radius:14px;padding:6px 12px;font-size:15px;margin:8px 0;color:#1F3A5F}
 .rule{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}.rule li{border:var(--b);border-radius:16px;padding:6px 12px;background:var(--bg);font-size:15px}.rule b{font-weight:400;background:var(--yellow);border:2px solid var(--ink);border-radius:99px;padding:0 10px;margin-right:6px;font-size:14px}
 .pay{display:grid;gap:10px}.pay .card{display:flex;gap:12px;align-items:center;padding:10px 14px}
 .pay .pc{flex:0 0 74px;text-align:center;border:var(--b);border-radius:18px;background:var(--bg);font-size:22px;line-height:1.3;padding:4px 0}.pay h4{margin:0;font-size:17px}.pay p{margin:0;font-size:14px}
@@ -97,10 +88,12 @@ footer{text-align:center;margin-top:36px;font-size:14px}
 .bt{display:flex;gap:8px;margin-top:8px}.bt button{flex:1;font:inherit;font-size:15px;color:var(--ink);border:var(--b);border-radius:14px;background:var(--yellow);padding:6px 4px;min-height:48px;cursor:pointer}.bt button.go{background:#E0463A;color:#fff;flex:2}.bt button.ok{background:var(--green)}.bt button:disabled{opacity:.6}
 .warn{background:#FDF2D2;border:2px dashed var(--ink);border-radius:14px;padding:6px 12px;font-size:14px;margin:10px 0}
 .rf{border:var(--b);border-radius:16px;padding:8px 12px;margin-top:10px;background:#fff}.rf small{display:block;color:#1F3A5F;font-size:13px}.rf .v{font-size:17px;word-break:break-word}.rf.big .v{font-size:26px;line-height:1.4}.rf.ro .v{font-size:19px;letter-spacing:.3px}
+.ph{display:flex;gap:10px;align-items:center;border:var(--b);border-radius:18px;padding:8px 12px;margin-bottom:10px;background:var(--bg)}.ph .spk{flex:0 0 56px;width:56px;height:56px;font-size:26px;border:var(--b);border-radius:50%;background:var(--yellow);cursor:pointer;padding:0}.ph .spk:active{background:var(--green)}.ph .ja{font-size:20px;line-height:1.4}.ph .ro{font-size:15px;color:#1F3A5F}.ph .zh{font-size:15px}
+#ptabs .tab{min-width:0;padding:4px 14px;font-size:16px}
 </style>
 </head>
 <body>
-<nav aria-label="主選單"><a href="#top">首頁</a><a href="#flight">航班</a><a href="#days">行程</a><a href="#todo">待辦</a><a href="#info">資訊</a><a href="#pay">刷卡</a><a href="#stay">住宿</a><a href="#jp-center" style="background:#E0463A;color:#fff">🇯🇵 日語翻譯</a></nav>
+<nav aria-label="主選單"><a href="#top">首頁</a><a href="#flight">航班</a><a href="#days">行程</a><a href="#info">資訊</a><a href="#pay">刷卡</a><a href="#stay">住宿</a><a href="#phrase">會話</a><a href="#jp-center" style="background:#E0463A;color:#fff">🇯🇵 日語翻譯</a></nav>
 <main id="top">
 <div class="hero">
 <svg viewBox="0 0 360 230" role="img" aria-label="富士山、鳥居、新幹線與飛機的插畫">
@@ -137,7 +130,7 @@ footer{text-align:center;margin-top:36px;font-size:14px}
 <div class="card flight" style="background:#FDF2D2"><h3><span class="tag t-飛機">去程</span> 11/19（四）中華航空 CI100</h3>
 <div class="fl"><div><span class="big">09:30</span>台北 TPE<small>第二航廈</small></div><div class="line"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M2 14l10-2 6-8 3 1-3 8 6 0 2-2 2 1-2 4 2 4-2 1-2-2h-6l3 8-3 1-6-8z" fill="#F2A497" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round"/></svg></div><div><span class="big">13:30</span>東京 NRT<small>第二航廈</small></div></div></div>
 <div class="card flight" style="background:#DDEEF6"><h3><span class="tag t-飛機">回程</span> 11/28（六）星宇航空 JX821</h3>
-<div class="fl"><div><span class="big">12:20</span>關西 KIX<small>第一航廈</small></div><div class="line"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M2 14l10-2 6-8 3 1-3 8 6 0 2-2 2 1-2 4 2 4-2 1-2-2h-6l3 8-3 1-6-8z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round"/></svg></div><div><span class="big">13:35</span>台北 TPE<small>第一航廈</small></div></div></div>
+<div class="fl"><div><span class="big">12:20</span>關西 KIX<small>第一航廈</small></div><div class="line"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M2 14l10-2 6-8 3 1-3 8 6 0 2-2 2 1-2 4 2 4-2 1-2-2h-6l3 8-3 1-6-8z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round"/></svg></div><div><span class="big">14:35</span>台北 TPE<small>第一航廈</small></div></div></div>
 </section>
 
 <section id="days"><h2>每日行程</h2>
@@ -145,10 +138,6 @@ footer{text-align:center;margin-top:36px;font-size:14px}
 <div class="dayhead" id="dh"></div>
 <ul class="tl pop" id="tl"></ul>
 </section>
-
-<section id="todo"><h2>待辦清單</h2>
-<div class="prog" aria-hidden="true"><i id="pg"></i></div>
-<ul class="todo" id="todos"></ul></section>
 
 <section id="info"><h2>日幣換算</h2>
 <div class="card"><div class="fx">
@@ -190,6 +179,10 @@ footer{text-align:center;margin-top:36px;font-size:14px}
 <p class="note">實際要去的分店可以後續再補。</p></div>
 
 </section>
+<section id="phrase"><h2>日語旅遊會話</h2>
+<p class="sub">點上方分類切換，按「複製日文」可貼給店員看。</p>
+<div class="tabs" role="tablist" id="ptabs" aria-label="會話分類"></div>
+<div id="pmsg" class="warn" hidden></div><div id="pbody"></div></section>
 <section id="jp-center"><h2>🇯🇵 日語即時翻譯</h2>
 <p class="sub">輸入中文或日文，立即幫你翻譯，讓日本旅行溝通更簡單！</p>
 <div class="card tr"><h3>即時雙向翻譯</h3>
@@ -197,37 +190,32 @@ footer{text-align:center;margin-top:36px;font-size:14px}
 <textarea id="tin" rows="4" placeholder="輸入中文，例如：請問停車場在哪裡？" aria-label="輸入要翻譯的文字"></textarea>
 <div class="bt"><button type="button" id="tgo" class="go">翻譯成日文</button><button type="button" id="tclr">清除</button></div>
 <div id="tmsg" class="warn" hidden></div><div id="tout"></div>
-<p class="note">需連網使用。首次產生假名與羅馬拼音時會下載約 12 MB 的字典。機器翻譯可能有誤，重要場合請讓店員確認。</p></div></section>
+<p class="note">需連網使用。翻譯結果會立即顯示；羅馬拼音由 Google 在背景提供（不需下載字典）；標準假名需按鈕才會下載約 17 MB 字典。機器翻譯可能有誤，重要場合請讓店員確認。</p></div></section>
 <footer>一路平安，玩得開心！</footer>
 </main>
 <script>
 var D=[
-{d:"11/19",w:"四",n:"抵達東京",s:"住立川民宿",i:[
+{d:"11/19",w:"四",wx:"東京 立川／昭島：8～20°C，晴，降雨 0%。白天暖、晚上涼",n:"抵達東京",s:"住立川民宿",i:[
 ["06:00","出發前往桃園機場","自駕"],["08:00","抵達桃園機場報到","飛機"],["09:30","CI100 起飛（TPE T2）","飛機",1],["13:30","抵達成田機場 T2","飛機"],["14:23","N’EX 成田→東京（15:15 抵達）","電車"],["15:21","JR 東京→立川（16:04 抵達）","電車"],["16:04","抵達立川站","步行"],["16:00–20:00","飯店附近逛逛或休息","步行"]]},
-{d:"11/20",w:"五",n:"東京郊區散策",s:"住立川民宿",i:[["10:30","應現院　笠法善神法會","法會",1],["下午","東京郊區散策，彈性安排","步行"]]},
-{d:"11/21",w:"六",n:"山梨一日遊",s:"住東橫inn 昭島",i:[["08:00","出發前往取車","步行"],["09:00","立川南口取車，載行李到東橫inn昭島寄放","自駕"],["10:00–18:00","山梨散策","自駕",1],["18:00–20:00","返回昭島，20:00 前還車","自駕"]]},
-{d:"11/22",w:"日",n:"真如苑法會日",s:"住東橫inn 昭島（已預約）",i:[["08:00","起床吃早餐","步行"],["09:00","前往應現院，參加圓成靈廟莊嚴法會","法會",1],["10:30","真如靈廟圓成莊嚴","法會",1],["16:30–17:30","前往總本部參拜靈廟","法會",1],["晚上","昭島逛商場，或到立川用餐","步行"]]},
-{d:"11/23",w:"一",n:"移動到京都",s:"日本勤勞感謝日",i:[["08:00","起床用餐","步行"],["09:16–10:17","昭島→東京","電車"],["10:39 或 10:45","東京搭車前往京都（約 13:00 抵達）","電車"],["13:00","京都車站前取車","自駕"],["15:00–18:00","東福寺（不確定）","步行"],["順路","京都 高島屋 S.C. 皮克敏商店","備註"],["備註","11/23 起住枚方民宿","備註"]]},
-{d:"11/24",w:"二",n:"枚方日",s:"住枚方民宿・自駕",i:[["早上","參拜悠音精舍","法會",1],["下午","枚方公園 ひらかたパーク","自駕"]]},
-{d:"11/25",w:"三",n:"宇治散步",s:"住枚方民宿・自駕",i:[["白天","宇治 平等院","自駕",1],["下午","宇治商店街","步行"]]},
-{d:"11/26",w:"四",n:"關西本部＋神戶",s:"住東橫inn 難波",i:[["10:30 或 14:30","真如苑關西本部","法會",1],["16:00–18:00","神戶港口附近（可考慮）","自駕"],["20:00 前","なんばターミナル店還車","自駕"],["晚上","入住東橫inn難波","步行"]]},
-{d:"11/27",w:"五",n:"大阪港灣與美食",s:"住東橫inn 難波",i:[["上午","天保山港灣村：大摩天輪、帆船型觀光船、大阪樂高樂園探索中心","電車",1],["午餐","天保山市場購物中心","步行"],["下午","道頓堀、心齋橋商店街","步行"],["順路","大阪梅田 LUCUA South 13 樓 皮克敏商店","備註"]]},
-{d:"11/28",w:"六",n:"回家",s:"關西機場",i:[["07:30","起床吃早餐","步行"],["08:45","搭南海電鐵前往關西機場","電車"],["09:30","關西機場報到","飛機"],["12:20","JX821 起飛（KIX T1）","飛機",1],["13:35","抵達台北桃園 T1","飛機"]]}];
+{d:"11/20",w:"五",wx:"東京 立川／昭島：4～15°C，降雨 0%。早晚轉冷，帶外套",n:"東京郊區散策",s:"住立川民宿",i:[["10:30","應現院　笠法善神法會","法會",1],["下午","東京郊區散策，彈性安排","步行"]]},
+{d:"11/21",w:"六",wx:"山梨 甲府：0～12°C，降雨 0%。最冷的一天，帶厚外套、手套、暖暖包",n:"山梨一日遊",s:"住東橫inn 昭島",i:[["08:00","出發前往取車","步行"],["09:00","立川南口取車，載行李到東橫inn昭島寄放","自駕"],["10:00–18:00","山梨散策","自駕",1],["18:00–20:00","返回昭島，20:00 前還車","自駕"]]},
+{d:"11/22",w:"日",wx:"東京 立川／昭島：3～14°C，降雨 0%。早晚冷",n:"真如苑法會日",s:"住東橫inn 昭島（已預約）",i:[["08:00","起床吃早餐","步行"],["09:00","前往應現院，參加圓成靈廟莊嚴法會","法會",1],["10:30","真如靈廟圓成莊嚴","法會",1],["16:30–17:30","前往總本部參拜靈廟","法會",1],["晚上","昭島逛商場，或到立川用餐","步行"]]},
+{d:"11/23",w:"一",wx:"京都：3～15°C，降雨 0%。早晚冷，建議洋蔥式穿法",n:"移動到京都",s:"日本勤勞感謝日",i:[["08:00","起床用餐","步行"],["09:16–10:17","昭島→東京","電車"],["10:39","東京搭新幹線，12:50 抵達京都（座位 Car.14 seat 20-A.B.C）","電車"],["13:00","京都車站前取車","自駕"],["15:00–18:00","東福寺（不確定）","步行"],["順路","京都 高島屋 S.C. 皮克敏商店","備註"],["備註","11/23 起住枚方民宿","備註"]]},
+{d:"11/24",w:"二",wx:"關西：9～15°C，降雨 66%。會下雨，要帶雨具、自駕留意路滑",n:"枚方日",s:"住枚方民宿・自駕",i:[["早上","參拜悠音精舍","法會",1],["下午","枚方公園 ひらかたパーク","自駕"],["雨備","下雨改去：ザキッズ イオンフードスタイル摂津富田店 The Kids（高槻市大畔町13-1，室內兒童遊樂場）。平日 10:00～18:00（最終入場 17:30），兒童約 ¥1,000／家長 ¥500，有停車場。票價與營業時間出發前再確認","雨備"],["雨備","或改去：キッズプラザ大阪（大阪市北區扇町2-1-7，室內體驗館）。 9:30～17:00，最終入館為閉館前 45 分鐘，無停車場，建議搭電車","雨備"]]},
+{d:"11/25",w:"三",wx:"關西：7～15°C，降雨 24%，多雲偶晴。早晚冷，備小雨傘",n:"宇治散步",s:"住枚方民宿・自駕",i:[["白天","宇治 平等院","自駕",1],["下午","宇治商店街","步行"]]},
+{d:"11/26",w:"四",wx:"關西：9～16°C，晴時多雲",n:"關西本部＋神戶",s:"住東橫inn 難波",i:[["10:30 或 14:30","真如苑關西本部","法會",1],["16:00–18:00","神戶港口附近（可考慮）","自駕"],["20:00 前","なんばターミナル店還車","自駕"],["晚上","入住東橫inn難波","步行"]]},
+{d:"11/27",w:"五",wx:"關西：10～17°C，晴時多雲",n:"大阪港灣與美食",s:"住東橫inn 難波",i:[["上午","天保山港灣村：大摩天輪、帆船型觀光船、大阪樂高樂園探索中心","電車",1],["午餐","天保山市場購物中心","步行"],["下午","道頓堀、心齋橋商店街","步行"],["順路","大阪梅田 LUCUA South 13 樓 皮克敏商店","備註"]]},
+{d:"11/28",w:"六",wx:"關西：10～18°C，晴時多雲",n:"回家",s:"關西機場",i:[["07:30","起床吃早餐","步行"],["08:45","搭南海電鐵前往關西機場","電車"],["09:30","關西機場報到","飛機"],["12:20","JX821 起飛（KIX T1）","飛機",1],["14:35","抵達台北桃園 T1","飛機"]]}];
 var tabs=document.getElementById("tabs"),tl=document.getElementById("tl"),dh=document.getElementById("dh");
 D.forEach(function(x,k){var b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.innerHTML="<small>"+x.w+"</small><b>"+x.d.split("/")[1]+"</b>";b.onclick=function(){show(k,true)};tabs.appendChild(b)});
 function show(k,anim){var x=D[k];Array.prototype.forEach.call(tabs.children,function(t,j){t.setAttribute("aria-selected",j==k);t.classList.remove("bounce")});
 var t=tabs.children[k];if(anim){void t.offsetWidth;t.classList.add("bounce");t.scrollIntoView({inline:"center",block:"nearest"})}
-dh.innerHTML="<h3>"+x.d+"（"+x.w+"）"+x.n+"</h3><p>"+x.s+"</p>";
+dh.innerHTML="<h3>"+x.d+"（"+x.w+"）"+x.n+"</h3><p>"+x.s+"</p>"+(x.wx?'<p class="wx">🌤 '+x.wx+'</p>':"");
 tl.className="tl";void tl.offsetWidth;tl.className="tl pop";
 tl.innerHTML=x.i.map(function(e,j){return '<li class="'+(e[3]?"must":"")+'" style="--i:'+j+'"><span class="tm">'+e[0]+'</span><span class="tag t-'+e[2]+'">'+e[2]+'</span>'+e[1]+(e[3]?' <span class="must-b">必去</span>':"")+"</li>"}).join("")}
 show(0,false);
-var T=["確認護照效期（全家 5 人）","線上填寫 Visit Japan Web","兒童汽座預約（5 歲、4 歲，租車需要）","國際駕照或日文譯本、台灣駕照","租車預約確認（立川、京都、難波）","購買 eSIM 或網路分享器","兌換日幣、準備 IC 卡（Suica/ICOCA）","確認枚方民宿入住時間與停車位","查詢 11/21–11/23 高速公路與 ETC","小孩零食、藥品、替換衣物","行動電源與充電線","真如苑法會服裝與參拜資料"];
 var S=[["立川民宿","11/19 – 11/21","離立川站近，抵達當天先休息"],["東橫inn 昭島","11/21 – 11/23","已預約；11/21 先到昭島寄放行李"],["枚方民宿","11/23 – 11/26","自駕；11/23 取車後入住"],["東橫inn 難波","11/26 – 11/28","11/28 搭南海電鐵到關西機場"]];
 document.getElementById("stays").innerHTML=S.map(function(s){return '<div class="card stay"><h3>'+s[0]+"</h3><p>"+s[1]+"</p><p>"+s[2]+"</p></div>"}).join("");
-var st={};try{st=JSON.parse(localStorage.getItem("jp26")||"{}")}catch(e){}
-var ul=document.getElementById("todos");
-T.forEach(function(s,k){var li=document.createElement("li"),l=document.createElement("label"),c=document.createElement("input");c.type="checkbox";c.checked=!!st[k];c.onchange=function(){st[k]=c.checked;try{localStorage.setItem("jp26",JSON.stringify(st))}catch(e){}prog()};var sp=document.createElement("span");sp.textContent=s;l.appendChild(c);l.appendChild(sp);li.appendChild(l);ul.appendChild(li)});
-function prog(){var n=0;T.forEach(function(_,k){if(st[k])n++});document.getElementById("pg").style.width=(n/T.length*100)+"%"}prog();
 var rt=document.getElementById("rt"),jp=document.getElementById("jp"),tw=document.getElementById("tw");
 jp.oninput=function(){tw.value=jp.value===""?"":Math.round(jp.value*rt.value)};
 tw.oninput=function(){jp.value=tw.value===""?"":Math.round(tw.value/rt.value)};
@@ -236,37 +224,119 @@ function refs(){document.getElementById("refs").innerHTML=[1000,5000,10000,22000
 var P=["住宿","租車","皮克敏","逛街"],sb=document.getElementById("stabs");
 P.forEach(function(n,k){var b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=n;b.onclick=function(){sp(k)};sb.appendChild(b)});
 function sp(k){Array.prototype.forEach.call(sb.children,function(t,j){t.setAttribute("aria-selected",j==k);t.classList.remove("bounce");var p=document.getElementById("p"+j);p.hidden=j!=k;if(j==k){p.classList.remove("pn");void p.offsetWidth;p.classList.add("pn");t.classList.add("bounce")}})}sp(0);
-var go=new Date("2026-11-19T09:30:00+08:00"),end=new Date("2026-11-28T13:35:00+08:00");
+var go=new Date("2026-11-19T09:30:00+08:00"),end=new Date("2026-11-28T14:35:00+08:00");
 function tick(){var n=new Date(),df=go-n;if(df<=0){document.getElementById("cdLabel").textContent=n>end?"旅程結束，歡迎回家":"旅程進行中，玩得開心";df=0}
 var p=function(v){return String(v).padStart(2,"0")};
 document.getElementById("cd").textContent=Math.floor(df/864e5);document.getElementById("ch").textContent=p(Math.floor(df/36e5)%24);document.getElementById("cm").textContent=p(Math.floor(df/6e4)%60);document.getElementById("cs").textContent=p(Math.floor(df/1e3)%60)}
 tick();setInterval(tick,1000);
+var PH=[["基本禮貌","ありがとうございます|Arigatou gozaimasu|謝謝您;;すみません|Sumimasen|不好意思／借過／請問一下;;大丈夫です|Daijoubu desu|沒關係／不用了／可以;;はい／いいえ|Hai / iie|是／不是;;わかりません|Wakarimasen|我聽不懂／我不明白"],
+["飯店住宿","チェックインをお願いします。|Chekkuin o onegaishimasu.|我要辦理入住;;予約しています。|Yoyaku shiteimasu.|我有預約;;〇〇の名前で予約しています。|〇〇 no namae de yoyaku shiteimasu.|我用〇〇的名字預訂;;パスポートです。|Pasupooto desu.|這是護照;;タオルをもう一枚ください。|Taoru o mou ichimai kudasai.|請再給我一條毛巾;;荷物を預けてもいいですか？|Nimotsu o azukete mo ii desu ka?|可以寄放行李嗎？"],
+["人數說法","何名様ですか？|Nan-mei sama desu ka?|請問幾位？;;8名です。|Hachi-mei desu.|8位;;5名です。|Go-mei desu.|5位;;大人5名、子供3名です。|Otona go-mei, kodomo san-mei desu.|5大3小;;大人2名、子供3名です。|Otona ni-mei, kodomo san-mei desu.|2大3小;;お子様は何歳ですか？|O-ko-sama wa nan-sai desu ka?|小孩幾歲？;;10歳、5歳、4歳です。|Jussai, go-sai, yon-sai desu.|10歲、5歲、4歲"],
+["餐廳用餐","メニューをください。|Menyuu o kudasai.|請給我菜單;;おすすめは何ですか？|Osusume wa nan desu ka?|有什麼推薦的？;;これをください。|Kore o kudasai.|我要這個;;これを2つください。|Kore o futatsu kudasai.|我要兩份這個;;子供用の食器をください。|Kodomo-you no shokki o kudasai.|請給我兒童餐具;;子供用の椅子はありますか？|Kodomo-you no isu wa arimasu ka?|有兒童椅嗎？;;お水をください。|Omizu o kudasai.|請給我水;;お箸をください。|Ohashi o kudasai.|請給我筷子;;取り皿をください。|Torizara o kudasai.|請給我分食小盤;;お会計をお願いします。|Okaikei o onegaishimasu.|麻煩結帳;;別々に払えますか？|Betsubetsu ni haraemasu ka?|可以分開付款嗎？;;持ち帰りでお願いします。|Mochikaeri de onegaishimasu.|我要外帶;;店内でお願いします。|Tennai de onegaishimasu.|我要內用"],
+["購物逛街","これはいくらですか？|Kore wa ikura desu ka?|這個多少錢？;;これをください。|Kore o kudasai.|我要這個;;これを見てもいいですか？|Kore o mite mo ii desu ka?|可以看看這個嗎？;;試着できますか？|Shichaku dekimasu ka?|可以試穿嗎？;;他のサイズはありますか？|Hoka no saizu wa arimasu ka?|有其他尺寸嗎？;;もっと大きいサイズはありますか？|Motto ookii saizu wa arimasu ka?|有更大的尺寸嗎？;;もっと小さいサイズはありますか？|Motto chiisai saizu wa arimasu ka?|有更小的尺寸嗎？;;袋をください。|Fukuro o kudasai.|請給我袋子;;袋はいりません。|Fukuro wa irimasen.|不需要袋子;;クレジットカードは使えますか？|Kurejitto kaado wa tsukaemasu ka?|可以刷信用卡嗎？;;免税できますか？|Menzei dekimasu ka?|可以退稅嗎？"],
+["其他","トイレはどこですか？|Toire wa doko desu ka?|廁所在哪裡？;;これは何ですか？|Kore wa nan desu ka?|這是什麼？;;写真を撮ってもいいですか？|Shashin o totte mo ii desu ka?|可以拍照嗎？;;日本語があまり話せません。|Nihongo ga amari hanasemasen.|我不太會說日文;;英語を話せますか？|Eigo o hanasemasu ka?|您會說英文嗎？;;ゆっくり話してください。|Yukkuri hanashite kudasai.|請說慢一點"],
+["數量","ひとつ|Hitotsu|一個;;ふたつ|Futatsu|兩個;;みっつ|Mittsu|三個;;よっつ|Yottsu|四個;;いつつ|Itsutsu|五個;;むっつ|Muttsu|六個;;ななつ|Nanatsu|七個;;やっつ|Yattsu|八個;;ここのつ|Kokonotsu|九個;;とお|Too|十個"]];
+var ptb=document.getElementById("ptabs"),pbd=document.getElementById("pbody");
+function pshow(k){Array.prototype.forEach.call(ptb.children,function(t,j){t.setAttribute("aria-selected",j==k)});pbd.innerHTML="";
+PH[k][1].split(";;").forEach(function(r){var f=r.split("|"),d=document.createElement("div");d.className="ph";
+var a=document.createElement("div");a.className="ja";a.textContent=f[0];var b=document.createElement("div");b.className="ro";b.textContent=f[1];var c=document.createElement("div");c.className="zh";c.textContent=f[2];
+var L=document.createElement("div");L.style.flex="1";L.appendChild(a);L.appendChild(b);L.appendChild(c);var x=document.createElement("button");x.type="button";x.className="spk";x.textContent="🔊";x.setAttribute("aria-label","播放日語發音");x.onclick=function(){psay(f[0])};d.appendChild(L);d.appendChild(x);pbd.appendChild(d)})}
+function psay(t){var pm=document.getElementById("pmsg");pm.hidden=true;if(!("speechSynthesis" in window)||!window.SpeechSynthesisUtterance){pm.textContent="這個瀏覽器不支援語音播放，請改用 Android 的 Chrome。";pm.hidden=false;return}
+var v=speechSynthesis.getVoices(),j=v.filter(function(x){return /^ja/i.test(x.lang)})[0],u=new SpeechSynthesisUtterance(t.replace(/〇〇/g,""));u.lang="ja-JP";u.rate=.9;if(j)u.voice=j;else if(v.length){pm.textContent="找不到日語語音，請到手機「設定→語言→文字轉語音」安裝日文語音。";pm.hidden=false}speechSynthesis.cancel();speechSynthesis.speak(u)}
+PH.forEach(function(c,k){var t=document.createElement("button");t.type="button";t.className="tab";t.setAttribute("role","tab");t.textContent=c[0];t.onclick=function(){pshow(k)};ptb.appendChild(t)});pshow(0);
+
 var PROXY="";/* 若有自己的翻譯代理(Cloudflare Worker)，填網址：接收 POST {text,from,to}，回傳 {text} */
 function cp(t,b){var done=function(){var o=b.textContent;b.textContent="✓ 已複製";b.classList.add("ok");setTimeout(function(){b.textContent=o;b.classList.remove("ok")},1500)};
 if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){fb(t,done)})}else fb(t,done)}
 function fb(t,done){var a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();try{if(document.execCommand("copy"))done()}catch(e){}document.body.removeChild(a)}
 var dir="zj",tin=document.getElementById("tin"),tgo=document.getElementById("tgo"),tout=document.getElementById("tout"),tmsg=document.getElementById("tmsg");
 function msg(t){tmsg.textContent=t;tmsg.hidden=!t}
-function mode(d){dir=d;document.getElementById("m1").className=d=="zj"?"on":"";document.getElementById("m2").className=d=="jz"?"on":"";tgo.textContent=d=="zj"?"翻譯成日文":"翻譯成中文";tin.placeholder=d=="zj"?"輸入中文，例如：請問停車場在哪裡？":"輸入日文，例如：駐車場はどこですか？";tout.innerHTML="";msg("")}
+var RQ=0;
+function setBusy(b){tgo.disabled=b;tgo.textContent=b?"翻譯中…":(dir=="zj"?"翻譯成日文":"翻譯成中文")}
+function reset(){RQ++;tout.innerHTML="";msg("");setBusy(false)}
+function mode(d){dir=d;document.getElementById("m1").className=d=="zj"?"on":"";document.getElementById("m2").className=d=="jz"?"on":"";tin.placeholder=d=="zj"?"輸入中文，例如：請問停車場在哪裡？":"輸入日文，例如：駐車場はどこですか？";reset()}
 document.getElementById("m1").onclick=function(){mode("zj")};document.getElementById("m2").onclick=function(){mode("jz")};
-document.getElementById("tclr").onclick=function(){tin.value="";tout.innerHTML="";msg("");tin.focus()};
-function tf(u,o){var c=new AbortController(),t=setTimeout(function(){c.abort()},12000);o=o||{};o.signal=c.signal;return fetch(u,o).then(function(r){clearTimeout(t);if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})}
-async function mt(q,f,t){if(PROXY){var p=await tf(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:q,from:f,to:t})});if(p&&p.text)return p.text;throw new Error("代理回應異常")}
-try{var g=await tf("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl="+f+"&tl="+t+"&q="+encodeURIComponent(q));var s=g[0].map(function(x){return x[0]}).join("");if(s)return s}catch(e){}
-var m=await tf("https://api.mymemory.translated.net/get?q="+encodeURIComponent(q)+"&langpair="+f+"|"+t);if(m.responseStatus==200&&m.responseData&&m.responseData.translatedText)return m.responseData.translatedText;throw new Error("翻譯服務沒有回應")}
-var ks=null;function loadK(){if(ks)return ks;ks=new Promise(function(res,rej){var u=["https://cdn.jsdelivr.net/npm/kuroshiro@1.2.0/dist/kuroshiro.min.js","https://cdn.jsdelivr.net/npm/kuroshiro-analyzer-kuromoji@1.1.0/dist/kuroshiro-analyzer-kuromoji.min.js"],i=0;function nx(){if(i>=u.length){try{var k=new Kuroshiro();k.init(new KuromojiAnalyzer({dictPath:"https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/"})).then(function(){res(k)},rej)}catch(e){rej(e)}return}var s=document.createElement("script");s.src=u[i++];s.onload=nx;s.onerror=function(){rej(new Error("lib"))};document.head.appendChild(s)}nx()});ks.catch(function(){ks=null});return ks}
-function say(t){if(!("speechSynthesis" in window)||!window.SpeechSynthesisUtterance){msg("這個瀏覽器不支援語音播放，請改用 Android 的 Chrome。");return}
-var u=new SpeechSynthesisUtterance(t);u.lang="ja-JP";var v=speechSynthesis.getVoices().filter(function(x){return /^ja/i.test(x.lang)});if(v.length)u.voice=v[0];else if(speechSynthesis.getVoices().length)msg("裝置沒有日語語音，請到手機「設定→語音輸出」安裝日文語音。");speechSynthesis.cancel();speechSynthesis.speak(u)}
+document.getElementById("tclr").onclick=function(){tin.value="";reset();tin.focus()};
+function tf(u,o){var c=new AbortController(),t=setTimeout(function(){c.abort()},12000);o=o||{};o.signal=c.signal;
+return fetch(u,o).then(function(r){if(!r.ok){var e=new Error("HTTP "+r.status);e.status=r.status;throw e}return r.json()}).then(function(j){clearTimeout(t);return j},function(e){clearTimeout(t);throw e})}
+function ce(e){if(!e)return"未知錯誤";if(e.name=="AbortError")return"連線逾時（12 秒內沒有回應）";if(e.status==429)return"請求過於頻繁或超過使用額度（HTTP 429）";if(e.status)return"服務回應錯誤（"+e.message+"）";if(e.name=="SyntaxError")return"回傳格式錯誤";if(e.name=="TypeError")return"無法連線（網路中斷、被瀏覽器的跨網域 CORS 限制或所在環境封鎖，或服務暫時不可用）";return e.message||String(e)}
+async function mt(q,f,t){var er=[];
+if(PROXY){try{var p=await tf(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:q,from:f,to:t})});if(p&&p.text)return p.text;er.push("代理：回應內容為空")}catch(e){er.push("代理："+ce(e))}}
+try{var g=await tf("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl="+f+"&tl="+t+"&q="+encodeURIComponent(q));var s=((g&&g[0])||[]).map(function(x){return x[0]}).join("");if(s)return s;er.push("Google 翻譯：回傳內容為空")}catch(e){er.push("Google 翻譯："+ce(e))}
+try{if(q.length>500)throw new Error("文字超過 MyMemory 的 500 字上限");var m=await tf("https://api.mymemory.translated.net/get?q="+encodeURIComponent(q)+"&langpair="+f+"|"+t);var r=m&&m.responseData&&m.responseData.translatedText;
+if(m&&(m.quotaFinished||/MYMEMORY WARNING/i.test(r||"")))throw new Error("今日免費額度已用完，請明天再試");
+if(m&&+m.responseStatus==200&&r)return r;throw new Error("回應異常（狀態 "+(m&&m.responseStatus)+"）"+(m&&m.responseDetails?"："+m.responseDetails:""))}catch(e){er.push("MyMemory："+ce(e))}
+throw new Error(er.join("；"))}
+var KT={};"あa いi うu えe おo かka きki くku けke こko さsa しshi すsu せse そso たta ちchi つtsu てte とto なna にni ぬnu ねne のno はha ひhi ふfu へhe ほho まma みmi むmu めme もmo やya ゆyu よyo らra りri るru れre ろro わwa ゐi ゑe をo がga ぎgi ぐgu げge ごgo ざza じji ずzu ぜze ぞzo だda ぢji づzu でde どdo ばba びbi ぶbu べbe ぼbo ぱpa ぴpi ぷpu ぺpe ぽpo ゔvu ぁa ぃi ぅu ぇe ぉo".split(" ").forEach(function(e){KT[e.charAt(0)]=e.slice(1)});
+var PU={"。":". ","、":", ","？":"? ","！":"! ","「":" “","」":"” "},MC={a:"ā",i:"ī",u:"ū",e:"ē",o:"ō"};
+function k2h(s){return s.replace(/[\u30A1-\u30F6]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-96)})}
+function kr(h){var o=[],i=0,sk=0,c,n,r,v,st;
+while(i<h.length){c=h.charAt(i);n=h.charAt(i+1);
+if(c=="っ"){sk=1;i++;continue}
+if(c=="ー"){o.push("-");i++;continue}
+if(c=="ん"){o.push(/[あいうえおやゆよ]/.test(n)?"n'":"n");i++;sk=0;continue}
+r=KT[c];
+if(r===undefined){o.push(PU[c]!==undefined?PU[c]:c);i++;sk=0;continue}
+i++;
+if(n&&"ゃゅょ".indexOf(n)>=0&&r.length>1&&r.slice(-1)=="i"){v={"ゃ":"a","ゅ":"u","ょ":"o"}[n];st=r.slice(0,-1);r=(st=="sh"||st=="ch"||st=="j")?st+v:st+"y"+v;i++}
+else if(n&&"ぁぃぅぇぉ".indexOf(n)>=0){v=KT[n];st=r.length>1?r.slice(0,-1):"w";r=st+v;i++}
+if(sk){r=(/^ch/.test(r)?"t":r.charAt(0))+r;sk=0}
+o.push(r)}
+return o.join("")}
+function mac(s,kv){var t=kv?s.slice(0,-1):s;
+t=t.replace(/([aiueo])-/g,function(m,v){return MC[v]}).replace(/aa/g,"ā").replace(/uu/g,"ū").replace(/ee/g,"ē").replace(/oo/g,"ō").replace(/ou/g,"ō");
+return kv?t+"u":t}
+function rom(tk){var G=[],H=[],bad=0;
+tk.forEach(function(t){var sf=t.surface_form,rd=t.reading,kj=/[\u4E00-\u9FFF\u3005\u3007]/.test(sf),h;
+if(rd&&rd!=="*"){h=k2h(rd)}else{h=k2h(sf);if(kj)bad=1}
+if(kj&&h===sf)bad=1;
+var pg=G[G.length-1],pp=pg&&!pg.p?pg.t[pg.t.length-1]:null;
+var at=(t.pos=="助動詞"&&t.basic_form!="です"&&t.basic_form!="だ")||(t.pos=="助詞"&&t.pos_detail_1=="接続助詞"&&(sf=="て"||sf=="で"))||t.pos_detail_1=="接尾"||(pp&&pp.pos=="接頭詞");
+if(at&&pp){pg.h+=h;pg.t.push(t)}else G.push({h:h,t:[t],p:t.pos=="記号"});
+H.push(h)});
+if(bad)return null;
+var out="";
+G.forEach(function(g){var f=g.t[0],r,l,k;
+if(g.p){out=out.replace(/ +$/,"")+kr(g.h);return}
+if(g.t.length==1&&f.pos=="助詞"&&{"は":"wa","を":"o","へ":"e"}[f.surface_form])r={"は":"wa","を":"o","へ":"e"}[f.surface_form];
+else{l=g.t[g.t.length-1];k=kr(g.h);r=mac(k,l.pos=="動詞"&&/(ou|uu)$/.test(k))}
+out+=r+" "});
+out=out.replace(/ +/g," ").trim().replace(/(^|[.!?]\s+)([a-zāīūēō])/g,function(m,a,b){return a+b.toUpperCase()});
+return{hira:H.join(""),rom:out}}
+var KB=[["kuromoji/build/kuromoji.js","kuromoji/dict/"],["https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js","https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/"],["https://unpkg.com/kuromoji@0.1.2/build/kuromoji.js","https://unpkg.com/kuromoji@0.1.2/dict/"]],tkz=null;
+function tmo(p,ms,m){return new Promise(function(res,rej){var t=setTimeout(function(){rej(new Error(m))},ms);p.then(function(v){clearTimeout(t);res(v)},function(e){clearTimeout(t);rej(e)})})}
+function ld(u){var e;return tmo(new Promise(function(res,rej){e=document.createElement("script");e.src=u;e.onload=res;e.onerror=function(){rej(new Error("無法載入 "+u+"（網址不存在或被封鎖）"))};document.head.appendChild(e)}),15000,"載入逾時（15 秒）："+u).catch(function(x){try{if(e&&e.parentNode)e.parentNode.removeChild(e)}catch(y){}throw x})}
+function bd(d){return tmo(new Promise(function(res,rej){kuromoji.builder({dictPath:d}).build(function(e,t){e?rej(new Error("字典載入失敗 "+d+(e.message?"："+e.message:""))):res(t)})}),60000,"字典下載逾時（60 秒）："+d)}
+function loadK(){if(tkz)return tkz;tkz=tmo((async function(){var er=[];for(var i=0;i<KB.length;i++){try{if(typeof kuromoji==="undefined")await ld(KB[i][0]);return await bd(KB[i][1])}catch(e){er.push(e.message)}}throw new Error(er.join("；"))})(),100000,"整體載入逾時（100 秒）");tkz.catch(function(){tkz=null});return tkz}
+var JV=null;function pv(){var v=speechSynthesis.getVoices();JV=v.filter(function(x){return /^ja/i.test(x.lang)})[0]||null;return v.length}
+if("speechSynthesis" in window){pv();speechSynthesis.onvoiceschanged=pv}
+function say(t){msg("");if(!("speechSynthesis" in window)||!window.SpeechSynthesisUtterance){msg("這個瀏覽器不支援語音播放，請改用 Android 的 Chrome 或 iPhone 的 Safari。");return}
+var v=speechSynthesis.getVoices(),j=v.filter(function(x){return /^ja/i.test(x.lang)})[0],u=new SpeechSynthesisUtterance(t);u.lang="ja-JP";u.rate=.9;if(j)u.voice=j;else if(v.length)msg("找不到日語語音，請到手機「設定→語言→文字轉語音」安裝日文語音。");
+u.onerror=function(e){if(e&&(e.error=="interrupted"||e.error=="canceled"))return;msg("播放失敗（"+((e&&e.error)||"未知")+"）。請確認媒體音量，並已安裝日文語音。")};
+speechSynthesis.cancel();speechSynthesis.speak(u)}
 function rf(l,t,cls,sp){var d=document.createElement("div");d.className="rf "+cls;var s=document.createElement("small");s.textContent=l;var v=document.createElement("div");v.className="v";v.textContent=t;var bt=document.createElement("div");bt.className="bt";var b=document.createElement("button");b.type="button";b.textContent="複製";b.onclick=function(){cp(t,b)};bt.appendChild(b);
 if(sp){var p=document.createElement("button");p.type="button";p.style.background="#E0463A";p.style.color="#fff";p.textContent="🔊 播放日語發音";p.onclick=function(){say(t)};bt.appendChild(p)}
 d.appendChild(s);d.appendChild(v);d.appendChild(bt);tout.appendChild(d)}
-tgo.onclick=async function(){var q=tin.value.trim();if(!q){msg("請先輸入文字");return}var lb=tgo.textContent;tgo.disabled=true;tgo.textContent="翻譯中…";tout.innerHTML="";msg("");
-try{var ja,zh;if(dir=="zj"){zh=q;ja=await mt(q,"zh-TW","ja")}else{ja=q;zh=await mt(q,"ja","zh-TW")}
-var ka="",ro="",ke=0;try{var k=await loadK();ka=await k.convert(ja,{to:"hiragana",mode:"spaced"});ro=await k.convert(ja,{to:"romaji",mode:"spaced",romajiSystem:"hepburn"});ro=ro.charAt(0).toUpperCase()+ro.slice(1)}catch(e){ke=1}
-rf("日文原文",ja,"big",1);if(!ke){rf("假名讀音",ka,"");rf("Romaji 羅馬拼音",ro,"ro")}rf(dir=="zj"?"中文解釋（你輸入的原句）":"中文翻譯",zh,"");
-if(ke)msg("翻譯完成，但假名／羅馬拼音元件載入失敗（需要連網，或此環境封鎖外部連線）。")}
-catch(e){msg("翻譯失敗："+(e&&e.name=="AbortError"?"連線逾時":e.message)+"。請檢查網路後再試一次。")}
-finally{tgo.disabled=false;tgo.textContent=lb}};
+function rc(l,cls){var d=document.createElement("div");d.className="rf "+cls;var s=document.createElement("small");s.textContent=l;var v=document.createElement("div");v.className="v";var bt=document.createElement("div");bt.className="bt";
+var b=document.createElement("button");b.type="button";b.textContent="複製";b.disabled=true;b.onclick=function(){cp(v.textContent,b)};
+var r=document.createElement("button");r.type="button";r.textContent="重試";r.style.display="none";bt.appendChild(b);bt.appendChild(r);d.appendChild(s);d.appendChild(v);d.appendChild(bt);tout.appendChild(d);
+var o={f:0,st:function(t){o.f=0;v.textContent=t;v.style.opacity=.6;b.disabled=true;r.style.display="none"},ok:function(t){o.f=0;v.textContent=t;v.style.opacity=1;b.disabled=false;r.style.display="none"},bad:function(t,fn,lb){o.f=1;v.textContent=t;v.style.opacity=1;b.disabled=true;r.textContent=lb||"重試";r.style.display="";r.onclick=fn}};return o}
+function gr(ja){return tf("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&dt=rm&sl=ja&tl=en&q="+encodeURIComponent(ja)).then(function(g){var a=(g&&g[0])||[],en=a.map(function(x){return x&&x[0]||""}).join("").trim().toLowerCase(),r=[];
+for(var i=0;i<a.length;i++){var x=a[i];if(x&&x[0]==null){var c=[x[2],x[3]];for(var k=0;k<2;k++){var v=c[k];if(typeof v=="string"&&/[A-Za-z]/.test(v)&&!/[\u3000-\u9fff\uff00-\uffef]/.test(v)&&v.trim().toLowerCase()!==en){r.push(v.trim());break}}}}
+var s=r.join(" ").trim();return s?s.charAt(0).toUpperCase()+s.slice(1):""})}
+function loadRomaji(ja,ro,my){ro.st("羅馬拼音載入中…（不影響上方翻譯與發音）");var f=function(){loadRomaji(ja,ro,my)};
+gr(ja).then(function(r){if(my!==RQ)return;if(r)ro.ok(r);else ro.bad("Google 沒有提供這句的羅馬拼音，可改按下方「取得假名讀音」用字典產生。",f)},function(e){if(my!==RQ)return;ro.bad("羅馬拼音載入失敗："+ce(e),f)})}
+function yomi(ja,ka,ro,my){var w="字典下載中（約 17 MB，行動網路可能需要一分鐘以上）…",t0=Date.now(),iv=setInterval(function(){if(my!==RQ){clearInterval(iv);return}ka.st(w+" 已等待 "+Math.round((Date.now()-t0)/1000)+" 秒")},1000);ka.st(w);
+loadK().then(function(tz){clearInterval(iv);if(my!==RQ)return;var rr;try{rr=rom(tz.tokenize(ja))}catch(e){throw new Error("讀音轉換失敗："+e.message)}
+if(rr){ka.ok(rr.hira);if(ro.f)ro.ok(rr.rom)}else ka.st("這句含有無法取得可靠讀音的漢字，因此不顯示假名，以免誤導。")}).catch(function(e){clearInterval(iv);if(my!==RQ)return;ka.bad("假名讀音載入失敗："+ce(e),function(){yomi(ja,ka,ro,my)})})}
+tgo.onclick=async function(){var q=tin.value.trim();if(!q){msg("請先輸入文字");return}var my=++RQ,d0=dir;setBusy(true);tout.innerHTML="";msg("");
+try{var ja,zh;if(d0=="zj"){zh=q;ja=await mt(q,"zh-TW","ja")}else{ja=q;zh=await mt(q,"ja","zh-TW")}
+if(my!==RQ)return;
+rf("日文原文",ja,"big",1);var ka=rc("假名讀音",""),ro=rc("Romaji 羅馬拼音（Google 提供）","ro");rf(d0=="zj"?"中文解釋（你輸入的原句）":"中文翻譯",zh,"");
+setBusy(false);loadRomaji(ja,ro,my);ka.bad("標準假名需要日文字典（約 17 MB），不會自動下載；按下按鈕才開始，不影響翻譯與發音。",function(){yomi(ja,ka,ro,my)},"取得假名讀音")}
+catch(e){if(my!==RQ)return;msg("翻譯失敗："+ce(e)+"。請檢查網路後再試一次。")}
+finally{if(my===RQ)setBusy(false)}};
+
 </script>
 </body>
 </html>
